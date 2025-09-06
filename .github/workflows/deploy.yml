@@ -26,13 +26,13 @@ jobs:
           version: 8
           run_install: false
       - name: Install dependencies
-        run: cd app && pnpm install
+        run: pnpm install
       - name: Build
-        run: cd app && pnpm build
+        run: pnpm build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: app/out
+          path: out
 
   deploy:
     needs: build
