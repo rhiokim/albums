@@ -10,6 +10,8 @@ on:
 jobs:
   extract-metadata:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Add write permission for repository contents
 
     steps:
       - name: Checkout repository
