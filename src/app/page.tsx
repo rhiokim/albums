@@ -1,50 +1,25 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
-const emailSchema = z.string().email({ message: "Invalid email address" });
-
-export default function Home() {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState<string | null>(null);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const result = emailSchema.safeParse(email);
-    if (result.success) {
-      setError(null);
-      alert(`Email is valid: ${result.data}`);
-    } else {
-      setError(result.error.issues[0].message);
-    }
-  };
-
+export default function LandingPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="w-full max-w-xs">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <h1 className="text-2xl font-bold text-center">Zod Validation</h1>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-            {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
-          </div>
-          <Button type="submit" className="w-full">
-            Validate
-          </Button>
-        </form>
-      </div>
-    </main>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-600 to-blue-500 text-white p-4">
+      <h1 className="text-5xl md:text-7xl font-bold text-center mb-6 animate-fade-in-up">
+        Welcome to My Music Album
+      </h1>
+      <p className="text-lg md:text-xl text-center mb-8 max-w-2xl opacity-0 animate-fade-in-up animation-delay-200">
+        Discover and enjoy a collection of my self-composed MP3s.
+        Immerse yourself in unique melodies and rhythms.
+      </p>
+      <Link href="/playlist" passHref>
+        <Button className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 opacity-0 animate-fade-in-up animation-delay-400">
+          Explore My Music
+        </Button>
+      </Link>
+
+      {/* Optional: Add a section for featured albums/tracks here later */}
+    </div>
   );
 }
