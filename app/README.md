@@ -18,26 +18,26 @@ This is a modern front-end project scaffolded for deployment to GitHub Pages as 
 ### 1. Install Dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Run the Development Server
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Available Scripts
 
--   `npm run dev`: Starts the development server.
--   `npm run build`: Builds the application for production (as a static site).
--   `npm run start`: Starts a production server (for previewing the static build).
--   `npm run lint`: Lints the codebase using Biome.
--   `npm run format`: Formats the codebase using Biome.
--   `npm run test`: Runs the unit tests using Vitest.
+-   `pnpm run dev`: Starts the development server.
+-   `pnpm run build`: Builds the application for production (as a static site).
+-   `pnpm run start`: Starts a production server (for previewing the static build).
+-   `pnpm run lint`: Lints the codebase using Biome.
+-   `pnpm run format`: Formats the codebase using Biome.
+-   `pnpm run test`: Runs the unit tests using Vitest.
 
 ## Deployment
 
-This project is configured to automatically deploy to GitHub Pages when changes are pushed to the `main` branch. The deployment is handled by the GitHub Actions workflow defined in `.github/workflows/deploy.yml`.
+This project is configured to automatically deploy to GitHub Pages when changes are pushed to the `main` branch. The deployment is handled by the GitHub Actions workflow defined in `.github/workflows/deploy.yml`.yml`.

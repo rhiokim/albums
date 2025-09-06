@@ -20,10 +20,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+          run_install: false
       - name: Install dependencies
-        run: cd app && npm install
+        run: cd app && pnpm install
       - name: Build
-        run: cd app && npm run build
+        run: cd app && pnpm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
