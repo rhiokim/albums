@@ -1,0 +1,35 @@
+name: Extract Music Metadata
+
+on:
+  push:
+    branches:
+      - main # Or a specific branch for music updates, e.g., 'music-updates'
+    paths:
+      - 'public/music/**' # Trigger only when MP3s are added/changed
+
+jobs:
+  extract-metadata:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies for metadata extraction
+        run: npm install jsmediatags # Install the library for metadata extraction
+
+      - name: Run metadata extraction script
+        run: node scripts/extract-metadata.js
+
+      - name: Commit and push metadata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/music.json # Assuming metadata is saved here
+          git commit -m "feat: Update music metadata" || echo "No changes to commit"
+          git push
