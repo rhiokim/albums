@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: cd app && pnpm install
       - name: Build
-        run: cd app && pnpm run build
+        run: cd app && pnpm build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -24,19 +24,19 @@ pnpm install
 ### 2. Run the Development Server
 
 ```bash
-pnpm run dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Available Scripts
 
--   `pnpm run dev`: Starts the development server.
--   `pnpm run build`: Builds the application for production (as a static site).
--   `pnpm run start`: Starts a production server (for previewing the static build).
--   `pnpm run lint`: Lints the codebase using Biome.
--   `pnpm run format`: Formats the codebase using Biome.
--   `pnpm run test`: Runs the unit tests using Vitest.
+-   `pnpm dev`: Starts the development server.
+-   `pnpm build`: Builds the application for production (as a static site).
+-   `pnpm start`: Starts a production server (for previewing the static build).
+-   `pnpm lint`: Lints the codebase using Biome.
+-   `pnpm format`: Formats the codebase using Biome.
+-   `pnpm test`: Runs the unit tests using Vitest.
 
 ## Deployment
 
