@@ -6,6 +6,7 @@ on:
       - main # Or a specific branch for music updates, e.g., 'music-updates'
     paths:
       - 'public/music/**' # Trigger only when MP3s are added/changed
+  workflow_dispatch: # Add this line to enable manual triggering
 
 jobs:
   extract-metadata:
