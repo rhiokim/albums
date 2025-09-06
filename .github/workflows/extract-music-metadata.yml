@@ -21,10 +21,10 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies for metadata extraction
-        run: npm install jsmediatags # Install the library for metadata extraction
+        run: npm install jsmediatags # Only install jsmediatags
 
       - name: Run metadata extraction script
-        run: node scripts/extract-metadata.js
+        run: npx tsx scripts/extract-metadata.ts # Run the TypeScript file directly using npx
 
       - name: Commit and push metadata
         run: |
