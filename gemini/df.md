@@ -6,6 +6,7 @@
 4. 계획된 Task를 진행하고 각 Task가 완료될 때, git에 commit.
 5. git commit은 @docs/gemini/git.md 파일을 참조하여 커밋메세지 작성.
 6. 모든 작업이 완료되면 Pull Request를 `gh` 명령어를 활용해서 생성해줘. Pull Request도 @docs/gemini/git.md 파일을 참조해서 내용 생성해.
+7. Pull Request는 현재 브랜치를 base로 설정해서 생성
 
 <Git-branch-naming-rule>
 {feature|fix|refactor|chore|build|docs|test|release}/{package-name}/{short-description}
