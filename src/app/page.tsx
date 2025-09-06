@@ -17,7 +17,7 @@ export default function Home() {
       setError(null);
       alert(`Email is valid: ${result.data}`);
     } else {
-      setError(result.error.errors[0].message);
+      setError(result.error.issues[0].message);
     }
   };
 
