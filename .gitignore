@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OSS snapshot artifacts (SBOM/dep graph)
+.oss-snapshot/
+.bin/

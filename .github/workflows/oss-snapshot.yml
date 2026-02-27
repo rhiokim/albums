@@ -1,0 +1,62 @@
+name: OSS Snapshot (SBOM + Dependency Graph)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+      - pnpm-lock.yaml
+      - .github/workflows/oss-snapshot.yml
+      - scripts/oss-snapshot.mjs
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Syft (SBOM generator)
+        run: |
+          mkdir -p .bin
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b ./.bin
+          echo "$PWD/.bin" >> "$GITHUB_PATH"
+          syft version
+
+      - name: Generate SBOM (CycloneDX JSON)
+        run: |
+          mkdir -p .oss-snapshot
+          syft dir:. -o cyclonedx-json=.oss-snapshot/sbom_document_v01.cdx.json
+
+      - name: Build inventory/graph + snapshot record
+        env:
+          CAPTURED_AT: ${{ github.run_started_at }}
+        run: |
+          node scripts/oss-snapshot.mjs --sbom .oss-snapshot/sbom_document_v01.cdx.json --out .oss-snapshot
+
+      - name: Upload snapshot artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: oss-snapshot-${{ github.sha }}
+          path: .oss-snapshot
